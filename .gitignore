@@ -1,0 +1,9 @@
+.DC_store
+.idea
+__pycache__/
+.env
+.venv
+venv
+*.json
+.buildozer
+bin
