@@ -1,7 +1,7 @@
-import time
-import threading
+# import time
+# import threading
 
-from yeelight import Bulb
+# from yeelight import Bulb
 
 from kivy.uix.button import Button
 from kivy.uix.screenmanager import Screen
@@ -17,14 +17,14 @@ class Screen1(Screen):
     def go_back(self, instance):
         self.manager.current = 'main'
 
-    def execute_function(self, instance):
-        threading.Thread(target=self.execute_function_thread).start()
+    # def execute_function(self, instance):
+    #     threading.Thread(target=self.execute_function_thread).start()
 
-    @staticmethod
-    def execute_function_thread():
-        bulb = Bulb("192.168.0.238")
-        for x in range(10):
-            bulb.turn_on(effect="sudden")
-            time.sleep(0.3)
-            bulb.turn_off()
-            time.sleep(0.3)
+    # @staticmethod
+    # def execute_function_thread():
+    #     bulb = Bulb("192.168.0.238")
+    #     for x in range(10):
+    #         bulb.turn_on(effect="sudden")
+    #         time.sleep(0.3)
+    #         bulb.turn_off()
+    #         time.sleep(0.3)
