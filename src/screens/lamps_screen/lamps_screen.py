@@ -1,7 +1,7 @@
 import time
+import threading
 
 from yeelight import Bulb
-import threading
 
 from kivy.uix.button import Button
 from kivy.uix.screenmanager import Screen

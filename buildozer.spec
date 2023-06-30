@@ -1,13 +1,13 @@
 [app]
 
 # (str) Title of your application
-title = My Application
+title = Scrhodinger
 
 # (str) Package name
-package.name = myapp
+package.name = SchrodingerAppTesting
 
 # (str) Package domain (needed for android/ios packaging)
-package.domain = org.test
+package.domain = org.ScrodingerTesting
 
 # (str) Source code where the main.py live
 source.dir = .
@@ -29,7 +29,7 @@ source.include_exts = py,png,jpg,kv,atlas
 #source.exclude_patterns = license,images/*/*.jpg
 
 # (str) Application versioning (method 1)
-version = 0.2
+version = 0.3
 
 # (str) Application versioning (method 2)
 # version.regex = __version__ = ['"](.*)['"]
