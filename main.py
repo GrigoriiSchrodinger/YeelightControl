@@ -1,31 +1,36 @@
 from kivy.app import App
 from kivy.uix.boxlayout import BoxLayout
-from kivy.uix.button import Button
-# from yeelight import Bulb
+from kivy.uix.label import Label
+from kivy.uix.switch import Switch
+from yeelight import Bulb
 
 
-class MainPage(App):
-    @staticmethod
-    def run_s():
-        times = 0
-        print(times + 33)
-        # bulb = Bulb("192.168.0.238")
-        # bulb.turn_on(effect="sudden")
+class LampControl(BoxLayout):
+    def __init__(self, **kwargs):
+        super(LampControl, self).__init__(**kwargs)
+        self.orientation = 'vertical'
+        self.padding = 50
 
-    def execute_function(self, instance):
-        self.run_s()
+        self.bulb = Bulb("192.168.0.238")
 
+        self.label = Label(text='Умная лампочка Yeelight', font_size='24sp', size_hint=(1, 0.4))
+        self.add_widget(self.label)
+
+        self.switch = Switch(active=False, size_hint=(1, 0.2))
+        self.switch.bind(active=self.toggle_light)
+        self.add_widget(self.switch)
+
+    def toggle_light(self, instance, value):
+        if value:
+            self.bulb.turn_on()
+        else:
+            self.bulb.turn_off()
+
+
+class LampApp(App):
     def build(self):
-        button_run = Button(text="run", on_release=self.execute_function)
-
-        layout = BoxLayout(size_hint=(1, None), height=50)
-        layout.add_widget(button_run)
-
-        root = BoxLayout(orientation='vertical')
-        root.add_widget(layout)
-
-        return root
+        return LampControl()
 
 
 if __name__ == '__main__':
-    MainPage().run()
+    LampApp().run()
