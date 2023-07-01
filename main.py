@@ -39,7 +39,7 @@ from kivy.clock import Clock
 from kivy.uix.button import Button
 
 from kivy.uix.gridlayout import GridLayout
-from yeelight import Bulb
+# from yeelight import Bulb
 
 
 class SimpleApp(App):
@@ -57,11 +57,11 @@ class SimpleApp(App):
 
     @staticmethod
     def execute_function_thread_helper():
-        bulb = Bulb("192.168.0.238")
+        # bulb = Bulb("192.168.0.238")
         for x in range(10):
-            bulb.turn_on(effect="sudden")
+            # bulb.turn_on(effect="sudden")
             time.sleep(0.3)
-            bulb.turn_off()
+            # bulb.turn_off()
             time.sleep(0.3)
 
 
