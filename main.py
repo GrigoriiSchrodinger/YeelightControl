@@ -3,18 +3,19 @@ import time
 from kivy.app import App
 from kivy.uix.boxlayout import BoxLayout
 from kivy.uix.button import Button
-from yeelight import Bulb
+# from yeelight import Bulb
 
 
 class MainPage(App):
     @staticmethod
     def run_s():
-        bulb = Bulb("192.168.0.238")
-        for x in range(10):
-            bulb.turn_on(effect="sudden")
-            time.sleep(0.3)
-            bulb.turn_off()
-            time.sleep(0.3)
+        print("ff")
+        # bulb = Bulb("192.168.0.238")
+        # for x in range(10):
+        #     bulb.turn_on(effect="sudden")
+        #     time.sleep(0.3)
+        #     bulb.turn_off()
+        #     time.sleep(0.3)
 
     def execute_function(self, instance):
         self.run_s()
