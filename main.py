@@ -1,15 +1,14 @@
+import json
 import logging
-import os
+import requests
+
 from kivy.app import App
 from kivy.uix.boxlayout import BoxLayout
 from kivy.uix.label import Label
 from kivy.uix.switch import Switch
-# from yeelight import Bulb
 
-log_file = os.path.join("lamp_control.log")
 logging.basicConfig(
     level=logging.INFO,
-    filename=log_file,
     format="%(asctime)s [%(levelname)s] %(message)s",
     datefmt="%Y-%m-%d %H:%M:%S"
 )
@@ -21,8 +20,6 @@ class LampControl(BoxLayout):
         self.orientation = 'vertical'
         self.padding = 50
 
-        # self.bulb = Bulb("192.168.0.238")
-
         self.label = Label(text='Умная лампочка Yeelight', font_size='24sp', size_hint=(1, 0.4))
         self.add_widget(self.label)
 
@@ -30,12 +27,15 @@ class LampControl(BoxLayout):
         self.switch.bind(active=self.toggle_light)
         self.add_widget(self.switch)
 
-    def toggle_light(self, instance, value):
+    @staticmethod
+    def toggle_light(instance, value):
         if value:
-            # self.bulb.turn_on()
-            logging.info("Лампочка включена")
+            url = 'http://10.0.0.3:9000'
+            data = {'key': 'value'}
+
+            headers = {'Content-Type': 'application/json'}
+            requests.get(url, headers=headers, data=json.dumps(data))
         else:
-            # self.bulb.turn_off()
             logging.info("Лампочка выключена")
 
 

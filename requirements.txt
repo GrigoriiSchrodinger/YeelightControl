@@ -1,3 +1,4 @@
 Kivy==2.2.1
 yeelight==0.7.11
 kivymd~=1.1.1
+requests~=2.31.0
