@@ -29,12 +29,13 @@ This demonstrates the use of a mesh mode to distort an image. You should see
 a line of buttons across the bottom of a canvas. Pressing them displays
 the mesh, a small circle of points, with different mesh.mode settings.
 '''
+import threading
 import time
 
 # import threading
-# import time
 
 from kivy.app import App
+from kivy.clock import Clock
 from kivy.uix.button import Button
 
 from kivy.uix.gridlayout import GridLayout
@@ -44,14 +45,18 @@ from yeelight import Bulb
 class SimpleApp(App):
     def build(self):
         layout = GridLayout(cols=2)
-        layout.add_widget(Button(text='RUN!!', on_release=self.execute_function_thread()))
+        layout.add_widget(Button(text='RUN!!', on_release=self.execute_function))
+
         return layout
 
-    # def execute_function(self, instance):
-    #     threading.Thread(target=self.execute_function_thread).start()
+    def execute_function(self, instance):
+        Clock.schedule_once(lambda dt: self.execute_function_thread(), 0)
+
+    def execute_function_thread(self):
+        threading.Thread(target=self.execute_function_thread_helper).start()
 
     @staticmethod
-    def execute_function_thread():
+    def execute_function_thread_helper():
         bulb = Bulb("192.168.0.238")
         for x in range(10):
             bulb.turn_on(effect="sudden")
