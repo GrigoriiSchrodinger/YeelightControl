@@ -1,15 +1,14 @@
-import time
+import json
 import threading
-
-from yeelight import Bulb
+import requests
 
 from kivy.uix.button import Button
 from kivy.uix.screenmanager import Screen
 
 
-class Screen1(Screen):
+class LampsScreen(Screen):
     def __init__(self, **kwargs):
-        super(Screen1, self).__init__(**kwargs)
+        super(LampsScreen, self).__init__(**kwargs)
         self.add_widget(Button(text='Back', on_release=self.go_back, size_hint=(0.1, 0.1), pos_hint={'x': 0, 'top': 1}))
         self.add_widget(Button(text='Execute Function', on_release=self.execute_function, size_hint=(0.4, 0.2),
                                pos_hint={'center_x': 0.5, 'center_y': 0.5}))
@@ -22,9 +21,8 @@ class Screen1(Screen):
 
     @staticmethod
     def execute_function_thread():
-        bulb = Bulb("192.168.0.238")
-        for x in range(10):
-            bulb.turn_on(effect="sudden")
-            time.sleep(0.3)
-            bulb.turn_off()
-            time.sleep(0.3)
+        url = 'http://192.168.0.139:9000'
+        data = {'key': 'value'}
+
+        headers = {'Content-Type': 'application/json'}
+        requests.get(url, headers=headers, data=json.dumps(data))
