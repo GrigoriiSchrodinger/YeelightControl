@@ -1,30 +1,27 @@
-from kivy.uix.button import Button
+from kivy.uix.boxlayout import BoxLayout
 from kivy.uix.screenmanager import Screen
+
+from src.style.button_style import StyledButton
 
 
 class MainScreen(Screen):
     def __init__(self, **kwargs):
         super(MainScreen, self).__init__(**kwargs)
 
-        button1 = Button(text='Lamps', size_hint=(0.3, 0.3), pos_hint={'center_x': 0.5, 'center_y': 0.7})
-        button1.bind(on_release=self.open_lamps_screen)
+        button_bar = BoxLayout(orientation='vertical')
+        button_lamps = StyledButton(text='Lamps')
+        button_lamps.bind(on_release=self.open_lamps_screen)
 
-        button2 = Button(text='Scenario', size_hint=(0.3, 0.3), pos_hint={'center_x': 0.5, 'center_y': 0.4})
-        button2.bind(on_release=self.open_scenario_screen)
+        button_scenario = StyledButton(text='Scenario')
+        button_scenario.bind(on_release=self.open_scenario_screen)
 
-        button3 = Button(text='Music', size_hint=(0.3, 0.3), pos_hint={'center_x': 0.5, 'center_y': 0.1})
-        button3.bind(on_release=self.open_music_screen)
+        button_bar.add_widget(button_lamps)
+        button_bar.add_widget(button_scenario)
 
-        self.add_widget(button1)
-        self.add_widget(button2)
-        self.add_widget(button3)
+        self.add_widget(button_bar)
 
     def open_lamps_screen(self, instance):
         self.manager.current = 'lamps'
 
     def open_scenario_screen(self, instance):
         self.manager.current = 'scenario'
-
-    def open_music_screen(self, instance):
-        self.manager.current = 'music'
-
