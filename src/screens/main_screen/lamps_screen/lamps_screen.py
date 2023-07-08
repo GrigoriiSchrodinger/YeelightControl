@@ -15,7 +15,7 @@ class LampsScreen(Screen):
 
         top_bar = BoxLayout(orientation='horizontal', size_hint=(1, 0.1))
         back_button = StyledButton(text='Back', on_release=self.go_back)
-        plus_button = StyledButton(text='+', on_release=self.go_back)
+        plus_button = StyledButton(text='+', on_release=self.go_adding)
 
         top_bar.add_widget(back_button)
         top_bar.add_widget(plus_button)
@@ -41,6 +41,9 @@ class LampsScreen(Screen):
 
     def go_back(self, instance):
         self.manager.current = 'main'
+
+    def go_adding(self, instance):
+        self.manager.current = 'adding'
 
     def execute_function(self, instance):
         threading.Thread(target=self.execute_function_thread).start()
