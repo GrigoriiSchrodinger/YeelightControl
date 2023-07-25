@@ -1,4 +1,5 @@
 import requests
+from kivy.clock import Clock
 from kivy.uix.boxlayout import BoxLayout
 from kivy.uix.screenmanager import Screen
 from kivy.uix.textinput import TextInput
@@ -32,11 +33,19 @@ class AddingScreen(Screen):
         self.add_widget(main_layout)
 
     def go_back(self, instance):
+        self.name_input.text = ''
+        self.ip_input.text = ''
         self.manager.current = 'lamps'
 
     def save_lamps(self, instance):
         url = 'http://10.0.0.3:9000'
-
         data = {'ip': self.ip_input.text, 'name': self.name_input.text}
-        requests.post(url, data=data)
+
+        def post_request(dt):
+            requests.post(url, data=data)
+
+        Clock.schedule_once(post_request, 0)
         self.manager.current = 'lamps'
+
+
+
