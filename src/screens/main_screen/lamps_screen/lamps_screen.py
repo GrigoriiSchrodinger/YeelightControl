@@ -1,7 +1,7 @@
 import threading
 
 import requests
-from kivy.core.audio import SoundLoader
+# from kivy.core.audio import SoundLoader
 from kivy.uix.boxlayout import BoxLayout
 from kivy.uix.gridlayout import GridLayout
 from kivy.uix.screenmanager import Screen
@@ -83,9 +83,9 @@ class LampsScreen(Screen):
         data = {'ip': ip}
         requests.post(url, data=data)
 
-        sound = SoundLoader.load('src/sound/switch-lamp-switch-clicking_fk4jxsnu.mp3')
-        if sound:
-            sound.play()
+        # sound = SoundLoader.load('src/sound/switch-lamp-switch-clicking_fk4jxsnu.mp3')
+        # if sound:
+        #     sound.play()
 
     # ------------------------------------------------------------------------------------------------------------------
 
