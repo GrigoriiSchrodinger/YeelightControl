@@ -1,6 +1,7 @@
-import json
+import configparser
 
-with open("src/utils/ip_addres.json", 'r') as file:
-    json_data = json.load(file)
+config = configparser.ConfigParser()
+config.read("src/utils/ip_addres.ini")
 
-IP = f'http://{json_data["ip"]}'
+ip_address = config.get("server", "ip")
+IP = f'http://{ip_address}'
