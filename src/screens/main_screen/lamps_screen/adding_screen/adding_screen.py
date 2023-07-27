@@ -5,6 +5,7 @@ from kivy.uix.screenmanager import Screen
 from kivy.uix.textinput import TextInput
 
 from src.style.button_style import StyledButton
+from src.utils.config import IP
 
 
 class AddingScreen(Screen):
@@ -38,7 +39,7 @@ class AddingScreen(Screen):
         self.manager.current = 'lamps'
 
     def save_lamps(self, instance):
-        url = 'http://10.0.0.3:9000'
+        url = IP
         data = {'ip': self.ip_input.text, 'name': self.name_input.text}
 
         def post_request(dt):
